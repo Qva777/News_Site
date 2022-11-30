@@ -16,6 +16,8 @@
     {% comment %}
     {{ form.as_p }}
     {% endcomment %}
+
+    {% comment %}
     {{ form.non_field.errors }}
     <div class="form-group">
         <label for="{{ form.title.id_for_label }}">Название</label>
@@ -23,25 +25,32 @@
         <div class="invalid-feedback">
             {{ form.title.errors }}
         </div>
-
-         <label for="{{ form.content.id_for_label }}">Текст</label>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.content.id_for_label }}">Текст</label>
         {{ form.content }}
         <div class="invalid-feedback">
             {{ form.content.errors }}
         </div>
-
-         <label for="{{ form.is_published.id_for_label }}">Опубликовано</label>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.is_published.id_for_label }}">Опубликовано</label>
         {{ form.is_published }}
         <div class="invalid-feedback">
             {{ form.is_published.errors }}
         </div>
-
+    </div>
+    <div class="form-group">
         <label for="{{ form.category.id_for_label }}">Категории</label>
         {{ form.category }}
         <div class="invalid-feedback">
             {{ form.category.errors }}
         </div>
     </div>
+    {% endcomment %}
+
+
+
     <button type="submit" class="btn-primary btn-block">Add new</button>
 </form>
 {% endblock %}
