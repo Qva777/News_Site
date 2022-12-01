@@ -1,16 +1,24 @@
 from django import forms
+import re
 
-from news.models import Category
+from django.core.exceptions import ValidationError
+
+from news.models import News
 
 attrs = {'class': 'form-control'}
 
 
-class NewsForm(forms.Form):
-    title = forms.CharField(label="Наименование", max_length=150, widget=forms.TextInput(attrs=attrs))
-    content = forms.CharField(label='Текст', required=False, widget=forms.Textarea(attrs={
-        'class': 'form-control',
-        'rows': 5
-    }))
-    is_published = forms.BooleanField(label='Опубликовно', initial=True)
-    category = forms.ModelChoiceField(label='Категория', empty_label="Chose the category",
-                                      queryset=Category.objects.all(), widget=forms.Select(attrs=attrs))
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = News
+        fields = ['title', 'content', 'is_published', 'category']
+        widgets = {
+            'title': forms.TextInput(attrs=attrs),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+            'category': forms.Select(attrs=attrs),
+        }
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        if re.match(r'\d', title):
+            raise ValidationError ("Tittle doesn't use number m ")
