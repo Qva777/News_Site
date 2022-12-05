@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #debug
+    #debug1
     "debug_toolbar",
     'news.apps.NewsConfig',
 ]
@@ -47,7 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #debug
+    #debug1
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
@@ -126,5 +126,5 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-#debug
-INTERNAL_IPS = ["127.0.0.1",]
+#debug1
+INTERNAL_IPS = ["127.0.0.1", ]
