@@ -4,7 +4,8 @@ from .views import *
 
 urlpatterns = [
     # path('', index, name='home'),
-    path('test/', test, name='test'),
+    # preparing to delete
+    # path('test/', test, name='test'),
     path('', HomeNews.as_view(), name='home'),
 
     path('category/<int:category_id>/', NewsByCategory.as_view(), name='category'),
