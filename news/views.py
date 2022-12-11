@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm, UserLoginForm  # , ContactForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactForm
 from .utils import MyMixin
 from django.contrib import messages
 from django.contrib.auth import login, logout
@@ -42,6 +42,23 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'yii2_loc@ukr.net', ['matroskin978@gmail.com'], fail_silently=True)
+            if mail:
+                messages.success(request, 'Письмо отправлено!')
+                return redirect('contact')
+            else:
+                messages.error(request, 'Ошибка отправки')
+        else:
+            messages.error(request, 'Ошибка валидации')
+    else:
+        form = ContactForm()
+    return render(request, 'news/test.html', {"form": form})
 
 
 class HomeNews(MyMixin, ListView):
