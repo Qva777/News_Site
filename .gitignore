@@ -159,3 +159,11 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 /db.sqlite3
+/.idea/.gitignore
+/django_cache/92123fc23b9e1a80ba6452d6dd302b95.djcache
+/django_cache/f6381ebc4d99f5b31350d62738758249.djcache
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/News_Site.iml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml
