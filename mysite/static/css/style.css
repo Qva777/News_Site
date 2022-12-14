@@ -1,91 +1,14 @@
 
 body {
-    width: 100%;
-    height: 100%;
-    -webkit-animation: rainbow 24s infinite;
-    -moz-animation: rainbow 24s infinite;
-    animation: rainbow 24s infinite;
+    background: #0E2231;
 }
-
-@-webkit-keyframes rainbow {
-    0% {
-        background: #f00;
-    }
-    14.3% {
-        background: #f80;
-    }
-    28.6% {
-        background: #ff0;
-    }
-    42.9% {
-        background: #0f0;
-    }
-    57.2% {
-        background: #0ff;
-    }
-    71.5% {
-        background: #09f;
-    }
-    85.8% {
-        background: #80f;
-    }
-    100% {
-        background: red;
-    }
+.card{
+    background: #124165;
+    color: white;
 }
-
-@-moz-keyframes rainbow {
-    0% {
-        background: #f00;
-    }
-    14.3% {
-        background: #f80;
-    }
-    28.6% {
-        background: #ff0;
-    }
-    42.9% {
-        background: #0f0;
-    }
-    57.2% {
-        background: #0ff;
-    }
-    71.5% {
-        background: #09f;
-    }
-    85.8% {
-        background: #80f;
-    }
-    100% {
-        background: red;
-    }
+.card-footer {
+    background: #2A5179;
 }
-
-@keyframes rainbow {
-    0% {
-        background: #f00;
-    }
-    14.3% {
-        background: #f80;
-    }
-    28.6% {
-        background: #ff0;
-    }
-    42.9% {
-        background: #0f0;
-    }
-    57.2% {
-        background: #0ff;
-    }
-    71.5% {
-        background: #09f;
-    }
-    85.8% {
-        background: #80f;
-    }
-    100% {
-        background: red;
-    }
+.text-muted{
+    color: #FFFFFF!important;
 }
-
-
