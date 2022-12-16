@@ -1,18 +1,16 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView, CreateView
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator
-
-from .models import News, Category
-from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactForm
 from .utils import MyMixin
+from .models import News, Category
 from django.contrib import messages
 from django.contrib.auth import login, logout
-from django.core.mail import send_mail
+
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
+
+from .forms import UserRegisterForm, UserLoginForm
 
 
 def register(request):
+    """ Method which registering """
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -44,24 +42,8 @@ def user_logout(request):
     return redirect('login')
 
 
-# def contact(request):
-#     if request.method == 'POST':
-#         form = ContactForm(request.POST)
-#         if form.is_valid():
-#             mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'yii2_loc@ukr.net', ['matroskin978@gmail.com'], fail_silently=True)
-#             if mail:
-#                 messages.success(request, 'Письмо отправлено!')
-#                 return redirect('contact')
-#             else:
-#                 messages.error(request, 'Ошибка отправки')
-#         else:
-#             messages.error(request, 'Ошибка валидации')
-#     else:
-#         form = ContactForm()
-#     return render(request, 'news/test.html', {"form": form})
-
-
 class HomeNews(MyMixin, ListView):
+    """ Additional context for news list """
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -81,7 +63,7 @@ class NewsByCategory(MyMixin, ListView):
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
     allow_empty = False
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -97,7 +79,6 @@ class ViewNews(DetailView):
     context_object_name = 'news_item'
     # template_name = 'news/news_detail.html'
     # pk_url_kwarg = 'news_id'
-
 
 # class CreateNews(LoginRequiredMixin, CreateView):
 #     form_class = NewsForm
