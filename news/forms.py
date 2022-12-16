@@ -6,37 +6,38 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from captcha.fields import CaptchaField
 
-
-class ContactForm(forms.Form):
-    subject = forms.CharField(label='Тема', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    content = forms.CharField(label='Текст', widget=forms.Textarea(attrs={'class': 'form-control', "rows": 5}))
-    captcha = CaptchaField()
+attrs = {'class': 'form-control'}
 
 
 class UserLoginForm(AuthenticationForm):
-    username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    """ Tabel for login  """
+    username = forms.CharField(label='Your name', widget=forms.TextInput(attrs=attrs))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs=attrs))
+    captcha = CaptchaField()
 
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(label='Имя пользователя', help_text='Максимум 150 символов', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label='E-mail', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    """ Tabel for register user """
+    username = forms.CharField(label='Your name', help_text='Max 150 char', widget=forms.TextInput(attrs=attrs))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs=attrs))
+    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput(attrs=attrs))
+    email = forms.EmailField(label='E-mail', widget=forms.EmailInput(attrs=attrs))
 
     class Meta:
+        """ Fields which I used """
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
+
 class NewsForm(forms.ModelForm):
+    """ """
     class Meta:
         model = News
-        # fields = '__all__'
         fields = ['title', 'content', 'is_published', 'category']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs=attrs),
             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
-            'category': forms.Select(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs=attrs),
         }
 
     def clean_title(self):
