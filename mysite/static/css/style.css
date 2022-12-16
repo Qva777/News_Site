@@ -1,14 +1,21 @@
-
 body {
     background: #0E2231;
+    color: #FFFFFF !important;
 }
-.card{
+
+.logi {
+    text-align: center;
+}
+
+.card {
     background: #124165;
     color: white;
 }
+
 .card-footer {
     background: #2A5179;
 }
-.text-muted{
-    color: #FFFFFF!important;
+
+.text-muted {
+    color: #FFFFFF !important;
 }

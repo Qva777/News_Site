@@ -44,32 +44,32 @@ def user_logout(request):
     return redirect('login')
 
 
-def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'yii2_loc@ukr.net', ['matroskin978@gmail.com'], fail_silently=True)
-            if mail:
-                messages.success(request, 'Письмо отправлено!')
-                return redirect('contact')
-            else:
-                messages.error(request, 'Ошибка отправки')
-        else:
-            messages.error(request, 'Ошибка валидации')
-    else:
-        form = ContactForm()
-    return render(request, 'news/test.html', {"form": form})
+# def contact(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'yii2_loc@ukr.net', ['matroskin978@gmail.com'], fail_silently=True)
+#             if mail:
+#                 messages.success(request, 'Письмо отправлено!')
+#                 return redirect('contact')
+#             else:
+#                 messages.error(request, 'Ошибка отправки')
+#         else:
+#             messages.error(request, 'Ошибка валидации')
+#     else:
+#         form = ContactForm()
+#     return render(request, 'news/test.html', {"form": form})
 
 
 class HomeNews(MyMixin, ListView):
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
-    paginate_by = 2
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = self.get_upper('Главная страница')
+        context['title'] = self.get_upper('Main page')
         return context
 
     def get_queryset(self):
@@ -99,9 +99,9 @@ class ViewNews(DetailView):
     # pk_url_kwarg = 'news_id'
 
 
-class CreateNews(LoginRequiredMixin, CreateView):
-    form_class = NewsForm
-    template_name = 'news/add_news.html'
-    # success_url = reverse_lazy('home')
-    # login_url = '/admin/'
-    raise_exception = True
+# class CreateNews(LoginRequiredMixin, CreateView):
+#     form_class = NewsForm
+#     template_name = 'news/add_news.html'
+#     # success_url = reverse_lazy('home')
+#     # login_url = '/admin/'
+#     raise_exception = True
