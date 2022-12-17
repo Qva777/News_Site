@@ -7,11 +7,9 @@
 {% block sidebar %}
     {% include 'inc/_sidebar.html' %}
 {% endblock %}
-
 {% block content %}
-    {{ mixin_prop }}
-
-    {% for item in news %}
+    <h1 align="center">Search Results</h1>
+    {% for item in object_list %}
         {% include 'inc/sample.html' %}
     {% endfor %}
 {% endblock %}

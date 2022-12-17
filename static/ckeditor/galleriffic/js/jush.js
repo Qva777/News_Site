@@ -405,7 +405,7 @@ jush.urls = {
 		'comparison-operators.html#operator_$1', 'comparison-operators.html#function_$1', 'any-in-some-subqueries.html', 'row-subqueries.html', 'group-by-modifiers.html', 'string-comparison-functions.html#operator_$1', 'logical-operators.html#operator_$1', 'control-flow-functions.html#operator_$1', 'arithmetic-functions.html#operator_$1', 'cast-functions.html#operator_$1',
 		'', // keywords without link
 		'comparison-operators.html#function_$1', 'control-flow-functions.html#function_$1', 'string-functions.html#function_$1', 'string-comparison-functions.html#function_$1', 'mathematical-functions.html#function_$1', 'date-and-time-functions.html#function_$1', 'cast-functions.html#function_$1', 'xml-functions.html#function_$1', 'bit-functions.html#function_$1', 'encryption-functions.html#function_$1', 'information-functions.html#function_$1', 'miscellaneous-functions.html#function_$1', 'group-by-functions.html#function_$1',
-		'fulltext-search.html#$1'
+		'fulltext-search_results.html#$1'
 	],
 	sqlite: [ 'http://www.sqlite.org/$key',
 		'lang_$1.html', 'pragma.html', 'lang_createvtab.html', 'lang_transaction.html',
