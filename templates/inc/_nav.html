@@ -7,17 +7,22 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Main</a></li>
         </ul>
         <span class="navbar-text">
-            {% if request.user.is_authenticated %}
-                Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Sing out</a>
-            {% else %}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0" action="{% url 'search_results' %}" method="get">
+                <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            </div>
+        {% if request.user.is_authenticated %}
+            Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Sing out</a>
+        {% else %}
             <a href="{% url 'register' %}">Sing Up</a> | <a href="{% url 'login' %}">Sign In</a>
-            {% endif %}
-    </span>
+        {% endif %}
+        </span>
     </div>
 </nav>

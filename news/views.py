@@ -10,22 +10,23 @@ from .forms import UserRegisterForm, UserLoginForm
 
 
 def register(request):
-    """ Method which registering """
+    """ Method which registering a user """
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, 'Вы успешно зарегистрировались')
+            messages.success(request, 'You have successfully registered!')
             return redirect('home')
         else:
-            messages.error(request, 'Ошибка регистрации')
+            messages.error(request, 'Error')
     else:
         form = UserRegisterForm()
     return render(request, 'news/register.html', {"form": form})
 
 
 def user_login(request):
+    """ Method which login a user """
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -38,8 +39,9 @@ def user_login(request):
 
 
 def user_logout(request):
+    """ Method which logout a user """
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 
 class HomeNews(MyMixin, ListView):
@@ -50,15 +52,18 @@ class HomeNews(MyMixin, ListView):
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        """ Changed context title """
         context = super().get_context_data(**kwargs)
         context['title'] = self.get_upper('Main page')
         return context
 
     def get_queryset(self):
+        """ Return news which published """
         return News.objects.filter(is_published=True).select_related('category')
 
 
 class NewsByCategory(MyMixin, ListView):
+    """ Additional context for news category """
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -66,23 +71,29 @@ class NewsByCategory(MyMixin, ListView):
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        """ Changed context title's category """
         context = super().get_context_data(**kwargs)
         context['title'] = self.get_upper(Category.objects.get(pk=self.kwargs['category_id']))
         return context
 
     def get_queryset(self):
+        """ Return category which published"""
         return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category')
 
 
 class ViewNews(DetailView):
+    """ Detail view  news 'read more' """
     model = News
     context_object_name = 'news_item'
-    # template_name = 'news/news_detail.html'
-    # pk_url_kwarg = 'news_id'
 
-# class CreateNews(LoginRequiredMixin, CreateView):
-#     form_class = NewsForm
-#     template_name = 'news/add_news.html'
-#     # success_url = reverse_lazy('home')
-#     # login_url = '/admin/'
-#     raise_exception = True
+
+class SearchResultsView(ListView):
+    """ Return news queryset by title """
+    model = News
+    template_name = 'news/search_results.html'
+
+    def get_queryset(self):
+        """ Search by title """
+        query = self.request.GET.get("q")
+        object_list = News.objects.filter(title__icontains=query)
+        return object_list
