@@ -1,6 +1,16 @@
 from django.db import models
 from django.urls import reverse
 
+from django.contrib.auth.models import UserManager, AbstractUser, User
+from django.db import models
+
+
+# class NewsRate(models.TextChoices):
+#     """ Choice mark for news """
+#     FINE = (1, "Fine")
+#     MEDIUM = (2, "Not bab")
+#     BAD = (3, "Bad")
+
 
 class News(models.Model):
     """ Model news in database """
@@ -38,3 +48,18 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['title']
+
+
+# class UserNewsRelation(models.Model):
+#     Choise = {(1, "Fine"),
+#               (2, "Not bab"),
+#               (3, "Bad")
+#               }
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     book = models.ForeignKey(News, on_delete=models.CASCADE)
+#     like = models.BooleanField(default=False)
+#     in_bookmarks = models.BooleanField(default=False)
+#     rate = models.PositiveIntegerField(choices=Choise)
+
+    # def __str__(self):
+    #     return f'{self.user.username}'#: {self.news.title} Rate - {self.rate}'
