@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% if request.user.is_authenticated %}
+    <h1>Welcome, {{ user.username }}! </h1>
+{% else %}
+    <a href="{% url 'register' %}">Sing Up</a> | <a href="{% url 'login' %}">Sign In</a>
+{% endif %}

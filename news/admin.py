@@ -2,17 +2,19 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from django import forms
-from .models import News, Category
+from .models import *
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class NewsAdminForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorUploadingWidget())
+
     class Meta:
         model = News
         fields = '__all__'
 
 
+@admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     form = NewsAdminForm
     list_display = ('id', 'title', 'category', 'created_at', 'updated_at', 'is_published', 'get_photo')
@@ -32,14 +34,18 @@ class NewsAdmin(admin.ModelAdmin):
 
     get_photo.short_description = 'Миниатюра'
 
+
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'title')
     list_display_links = ('id', 'title')
     search_fields = ('title',)
 
 
-admin.site.register(News, NewsAdmin)
-admin.site.register(Category, CategoryAdmin)
+# @admin.register(UserNewsRelation)
+# class UserNewsRelationAdmin(admin.ModelAdmin):
+#     pass
+# admin.site.register(UserNewsRelation, UserNewsRelationAdmin)
 
 admin.site.site_title = 'Управление новостями'
 admin.site.site_header = 'Управление новостями'
