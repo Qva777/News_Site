@@ -1,11 +1,12 @@
+import re
+
 from django import forms
 from .models import News
-import re
+
+from captcha.fields import CaptchaField
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
-from captcha.fields import CaptchaField
-
 attrs = {'class': 'form-control'}
 
 

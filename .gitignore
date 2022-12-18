@@ -167,3 +167,4 @@ cython_debug/
 /.idea/News_Site.iml
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/vcs.xml
+/media/

@@ -32,7 +32,8 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')
+            # return redirect('home')
+            return render(request, 'news/personal_area.html')
     else:
         form = UserLoginForm()
     return render(request, 'news/login.html', {"form": form})
