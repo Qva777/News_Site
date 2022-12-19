@@ -50,16 +50,17 @@ class Category(models.Model):
         ordering = ['title']
 
 
-# class UserNewsRelation(models.Model):
-#     Choise = {(1, "Fine"),
-#               (2, "Not bab"),
-#               (3, "Bad")
-#               }
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     book = models.ForeignKey(News, on_delete=models.CASCADE)
-#     like = models.BooleanField(default=False)
-#     in_bookmarks = models.BooleanField(default=False)
-#     rate = models.PositiveIntegerField(choices=Choise)
 
-    # def __str__(self):
-    #     return f'{self.user.username}'#: {self.news.title} Rate - {self.rate}'
+class UserNewsRelation(models.Model):
+    Choise = {(1, "Fine"),
+              (2, "Not bab"),
+              (3, "Bad")
+              }
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(News, on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
+    in_bookmarks = models.BooleanField(default=False)
+    rate = models.PositiveIntegerField(choices=Choise)
+
+    def __str__(self):
+        return f'{self.user.username}: {self.book.title} Rate - {self.rate}'
