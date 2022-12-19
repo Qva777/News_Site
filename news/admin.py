@@ -42,9 +42,9 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('title',)
 
 
-# @admin.register(UserNewsRelation)
-# class UserNewsRelationAdmin(admin.ModelAdmin):
-#     pass
+@admin.register(UserNewsRelation)
+class UserNewsRelationAdmin(admin.ModelAdmin):
+    pass
 # admin.site.register(UserNewsRelation, UserNewsRelationAdmin)
 
 admin.site.site_title = 'Управление новостями'
