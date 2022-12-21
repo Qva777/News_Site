@@ -1,12 +1,14 @@
+from .models import *
+
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from django import forms
-from .models import *
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class NewsAdminForm(forms.ModelForm):
+    """ News admin panel """
     content = forms.CharField(widget=CKEditorUploadingWidget())
 
     class Meta:
@@ -16,6 +18,7 @@ class NewsAdminForm(forms.ModelForm):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
+    """ Custom admin panel """
     form = NewsAdminForm
     list_display = ('id', 'title', 'category', 'created_at', 'updated_at', 'is_published', 'get_photo')
     list_display_links = ('id', 'title')
@@ -32,11 +35,12 @@ class NewsAdmin(admin.ModelAdmin):
         else:
             return '-'
 
-    get_photo.short_description = 'Миниатюра'
+    get_photo.short_description = 'Photo'
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    """ Field in category link which I use"""
     list_display = ('id', 'title')
     list_display_links = ('id', 'title')
     search_fields = ('title',)
@@ -45,7 +49,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(UserNewsRelation)
 class UserNewsRelationAdmin(admin.ModelAdmin):
     pass
-# admin.site.register(UserNewsRelation, UserNewsRelationAdmin)
+
 
 admin.site.site_title = 'Управление новостями'
 admin.site.site_header = 'Управление новостями'

@@ -1,11 +1,7 @@
-import re
-
 from django import forms
-from .models import News
 
 from captcha.fields import CaptchaField
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 attrs = {'class': 'form-control'}
 
@@ -29,20 +25,20 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-
-class NewsForm(forms.ModelForm):
-    """ """
-    class Meta:
-        model = News
-        fields = ['title', 'content', 'is_published', 'category']
-        widgets = {
-            'title': forms.TextInput(attrs=attrs),
-            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
-            'category': forms.Select(attrs=attrs),
-        }
-
-    def clean_title(self):
-        title = self.cleaned_data['title']
-        if re.match(r'\d', title):
-            raise ValidationError('Название не должно начинаться с цифры')
-        return title
+# preparing to delete
+# class NewsForm(forms.ModelForm):
+#     """ """
+#     class Meta:
+#         model = News
+#         fields = ['title', 'content', 'is_published', 'category']
+#         widgets = {
+#             'title': forms.TextInput(attrs=attrs),
+#             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+#             'category': forms.Select(attrs=attrs),
+#         }
+#
+#     def clean_title(self):
+#         title = self.cleaned_data['title']
+#         if re.match(r'\d', title):
+#             raise ValidationError('Название не должно начинаться с цифры')
+#         return title
