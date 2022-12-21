@@ -12,10 +12,6 @@
         <p class="card-text">{{ news_item.content|safe|linebreaks }}</p>
     </div>
     <div class="card-footer text-muted">
-        {{ news_item.created_at|date:"Y-m-d H:i" }}
-        <button class="button button-like">
-            <i class="fa fa-heart"></i>
-            <span>Like</span>
-        </button>
+        {{ item.created_at|date:"Y-m-d H:i" }}
     </div>
 </div>
