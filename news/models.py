@@ -1,15 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
-from django.contrib.auth.models import UserManager, AbstractUser, User
-from django.db import models
-
-
-# class NewsRate(models.TextChoices):
-#     """ Choice mark for news """
-#     FINE = (1, "Fine")
-#     MEDIUM = (2, "Not bab")
-#     BAD = (3, "Bad")
+from django.contrib.auth.models import User
 
 
 class News(models.Model):
@@ -48,7 +39,6 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['title']
-
 
 
 class UserNewsRelation(models.Model):
